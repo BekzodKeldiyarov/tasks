@@ -27,7 +27,7 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255|min:8',
-            'body' => 'required|min:32',
+            'body' => 'required|min:16',
             'status' => 'required|in:DRAFT,WAITING,PROCESSING,COMPLETED',
             'date' => 'required|date'
         ];
@@ -40,7 +40,7 @@ class StoreTaskRequest extends FormRequest
             'title.max' => 'The title field must not exceed 255 characters.',
             'title.min' => 'The title must be at least 8 characters long.',
             'body.required' => 'The body field is required.',
-            'body.min' => 'The title must be at least 32 characters long.',
+            'body.min' => 'The title must be at least 16 characters long.',
             'status.required' => 'The status field is required.',
             'status.in' => 'The status field should be one of [DRAFT, WAITING, PROCESSING, COMPLETED].',
             'date.required' => 'The date field is required.',
@@ -56,6 +56,6 @@ class StoreTaskRequest extends FormRequest
             'success' => false,
             'message' => 'Validation errors',
             'data' => $validator->errors()
-        ]));
+        ], 422));
     }
 }
