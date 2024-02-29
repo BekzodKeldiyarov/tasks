@@ -13,6 +13,34 @@
                 "summary": "Retrieve a list of tasks",
                 "description": "Get a paginated list of tasks along with pagination information.",
                 "operationId": "feed89770241fcb6af2325dafc9adfde",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Optional Query Param for Filter",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DRAFT",
+                                "WAITING",
+                                "PROCESSING",
+                                "COMPLETED"
+                            ],
+                            "example": ""
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Optional Query Param for Filter",
+                        "required": false,
+                        "schema": {
+                            "type": "date",
+                            "example": "2024-02-29"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",

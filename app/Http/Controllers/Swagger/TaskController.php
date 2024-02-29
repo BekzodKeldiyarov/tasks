@@ -12,6 +12,18 @@ use App\Http\Controllers\Controller;
  *      tags={"Task"},
  *      summary="Retrieve a list of tasks",
  *      description="Get a paginated list of tasks along with pagination information.",
+ *
+ *     @OA\Parameter (
+ *         name="status", required=false, in="query", description="Optional Query Param for Filter",
+ *         @OA\Schema(type="string", enum={"DRAFT", "WAITING", "PROCESSING", "COMPLETED"}, example="")
+ *     ),
+ *
+ *     @OA\Parameter (
+ *        name="date", required=false, in="query", description="Optional Query Param for Filter",
+ *        @OA\Schema(type="date", example="2024-02-29")
+ *      ),
+ *
+ *
  *      @OA\Response(
  *          response=200,
  *          description="Successful operation",
