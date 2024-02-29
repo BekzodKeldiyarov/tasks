@@ -1,0 +1,573 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Selection Task of Quick Deal",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Retrieve a list of tasks",
+                "description": "Get a paginated list of tasks along with pagination information.",
+                "operationId": "feed89770241fcb6af2325dafc9adfde",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "body": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "DRAFT",
+                                                            "WAITING",
+                                                            "PROCESSING",
+                                                            "COMPLETED"
+                                                        ]
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string"
+                                        },
+                                        "from": {
+                                            "type": "integer"
+                                        },
+                                        "last_page": {
+                                            "type": "integer"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string"
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "url": {
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "label": {
+                                                        "type": "string"
+                                                    },
+                                                    "active": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "path": {
+                                            "type": "string"
+                                        },
+                                        "per_page": {
+                                            "type": "integer"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "to": {
+                                            "type": "integer"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Creating a Task",
+                "operationId": "44140ecf3dfc93dfa6ae24da60ceb875",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Some title"
+                                            },
+                                            "body": {
+                                                "type": "text",
+                                                "example": "Some long text for body because minimum characters length should be 32."
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "DRAFT",
+                                                    "WAITING",
+                                                    "PROCESSING",
+                                                    "COMPLETED"
+                                                ]
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2024-02-29"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CREATED",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Some Title"
+                                                },
+                                                "body": {
+                                                    "type": "text",
+                                                    "example": "Some Body Description Here"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "DRAFT"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2020-02-03"
+                                                },
+                                                "updated_at": {
+                                                    "type": "timestamp",
+                                                    "example": "2024-02-28T23:34:07.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "timestamp",
+                                                    "example": "2024-02-28T23:34:07.000000Z"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation errors"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "body": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The title must be at least 32 characters long."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Retrieve a single task by ID",
+                "description": "Get details of a single task by its ID.",
+                "operationId": "78212090f1ea1c914b27eae681f03cc1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "body": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "DRAFT",
+                                                        "WAITING",
+                                                        "PROCESSING",
+                                                        "COMPLETED"
+                                                    ]
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "NOT FOUND"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update a task by ID",
+                "description": "Update details of a task by its ID.",
+                "operationId": "6a4a42bf8a15d92650f25d059b526b1a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Some new title for updating current one"
+                                    },
+                                    "body": {
+                                        "type": "string",
+                                        "example": "Some new description for task in order to update current data"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "DRAFT",
+                                            "WAITING",
+                                            "PROCESSING",
+                                            "COMPLETED"
+                                        ]
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": null
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Some Title"
+                                                },
+                                                "body": {
+                                                    "type": "text",
+                                                    "example": "Some Body Description Here"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "DRAFT"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2020-02-03"
+                                                },
+                                                "updated_at": {
+                                                    "type": "timestamp",
+                                                    "example": "2024-02-28T23:34:07.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "timestamp",
+                                                    "example": "2024-02-28T23:34:07.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "NOT FOUND"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation errors"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The title must be at least 8 characters long."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete a task by ID",
+                "description": "Delete a task by its ID.",
+                "operationId": "181d8deca5663096121f75375fe63fc8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "DELETED"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "NOT FOUND"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
